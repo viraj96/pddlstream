@@ -3,4 +3,5 @@
 	url = https://github.com/caelan/ss-pybullet
 [submodule "FastDownward"]
 	path = FastDownward
-	url = https://github.com/caelan/FastDownward.git
+    url = https://github.com/viraj96/FastDownward.git
+    branch = dev_branch
