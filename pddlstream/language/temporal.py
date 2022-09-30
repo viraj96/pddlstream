@@ -111,7 +111,7 @@ Options are:
   v - disable verbose printouts
   y - cyclic cg CEA heuristic
   Y - cyclic cg CEA heuristic - preferred operators
-  x - cyclic cg makespan heuristic 
+  x - cyclic cg makespan heuristic
   X - cyclic cg makespan heuristic - preferred operators
   G [m|c|t|w] - G value evaluation, one of m - makespan, c - pathcost, t - timestamp, w [weight] - weighted / Note: One of those has to be set!
   Q [r|p|h] - queue mode, one of r - round robin, p - priority, h - hierarchical
@@ -233,7 +233,7 @@ OPTIC_COMMAND = 'optic-clp -N {} {} | tee {}'
 """
 Usage: optic/src/optic/optic-clp [OPTIONS] domainfile problemfile [planfile, if -r specified]
 
-Options are: 
+Options are:
 
 	-N	Don't optimise solution quality (ignores preferences and costs);
 	-0	Abstract out timed initial literals that represent recurrent windows;
@@ -371,7 +371,7 @@ def parse_temporal_domain(domain_pddl):
     delete_imports(prefixes)
     sys.modules.update(deleted) # This is important otherwise classes are messed up
     import pddl
-    import pddl_parser
+    import pddl_parser_interal
     assert not actions
 
     simple_from_durative = simple_from_durative_action(durative_actions, fluents)
@@ -379,7 +379,7 @@ def parse_temporal_domain(domain_pddl):
 
     requirements = pddl.Requirements([])
     types = [pddl.Type(ty.name, ty.basetype_name) for ty in types]
-    pddl_parser.parsing_functions.set_supertypes(types)
+    pddl_parser_interal.parsing_functions.set_supertypes(types)
     predicates = [pddl.Predicate(p.name, p.arguments) for p in predicates]
     constants = convert_parameters(constants)
     axioms = list(map(convert_axiom, axioms))

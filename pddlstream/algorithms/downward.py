@@ -43,10 +43,10 @@ sys.path.append(TRANSLATE_PATH)
 import pddl.f_expression
 import pddl
 import instantiate
-import pddl_parser.lisp_parser
+import pddl_parser_interal.lisp_parser
 import normalize
-import pddl_parser
-from pddl_parser.parsing_functions import parse_domain_pddl, parse_task_pddl, \
+import pddl_parser_interal
+from pddl_parser_interal.parsing_functions import parse_domain_pddl, parse_task_pddl, \
     parse_condition, check_for_duplicates
 sys.argv = original_argv
 
@@ -155,7 +155,7 @@ set_cost_scale(1e3) # TODO: make unit costs be equivalent to cost scale = 0
 ##################################################
 
 def parse_lisp(lisp):
-    return pddl_parser.lisp_parser.parse_nested_list(lisp.splitlines())
+    return pddl_parser_interal.lisp_parser.parse_nested_list(lisp.splitlines())
 
 # TODO: dynamically generate type_dict and predicate_dict
 Domain = namedtuple('Domain', ['name', 'requirements', 'types', 'type_dict', 'constants',
@@ -190,7 +190,7 @@ def parse_problem(domain, problem_pddl):
 #              ':precondition', [],
 #              ':effect', []]
 #    parse_action(action)
-#    pddl_parser.parsing_functions.parse_action(lisp_list, [], {})
+#    pddl_parser_interal.parsing_functions.parse_action(lisp_list, [], {})
 #    return pddl.Action
 
 ##################################################
@@ -619,7 +619,7 @@ def make_axiom(parameters, preconditions, derived):
 
 def make_domain(constants=[], predicates=[], functions=[], actions=[], axioms=[]):
     types = [pddl.Type(OBJECT)]
-    pddl_parser.parsing_functions.set_supertypes(types)
+    pddl_parser_interal.parsing_functions.set_supertypes(types)
     return Domain(name='', requirements=pddl.Requirements([]),
              types=types, type_dict={ty.name: ty for ty in types}, constants=constants,
              predicates=predicates, predicate_dict={p.name: p for p in predicates},
